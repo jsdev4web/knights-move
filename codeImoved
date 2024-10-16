@@ -1,0 +1,16 @@
+
+
+   /*let moves =   [
+        { name: "path1", values: [x + 1, y + 2] },
+        { name: "path2", values: [x + 1, y - 2] },
+        { name: "path3", values: [x - 1, y + 2] },
+        { name: "path4", values: [x - 1, y - 2] },
+        { name: "path5", values: [x + 2, y + 1] },
+        { name: "path6", values: [x + 2, y - 1] },
+        { name: "path7", values: [x - 2, y + 1] },
+        { name: "path8", values: [x - 2, y - 1] }
+    ]
+
+    moves.forEach(function(item){
+        console.log(item)
+    })*/
