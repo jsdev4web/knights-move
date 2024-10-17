@@ -14,27 +14,14 @@ class KnightsMove{
     spf(start, end){
         
         let results = []
-        //base case start and finish
-        //console.log(start, end)
-
-        //converting the start and end into node objects here
         start = new Node(start[0], start[1])
-        //console.log(start)
         end = new Node(end[0], end[1])
-        //console.log(end)
-
-
-        //console.log(end.points)
-
         
         //base case if board is in the boundaries of 7 by 7 board
         if(start == undefined || end == undefined) {return null}
-        //I need to add in if x or y + next move is greater is 7 === out of bounds        
-
 
         this.queue = []
         this.queue.push(start)
-        //console.log(this.queue)
         
         while(this.queue.length){
             //length of the queue
@@ -46,8 +33,8 @@ class KnightsMove{
             for (let i = 0; i < levelSize; i++){
                 let currNode = this.queue.shift()
 
-                console.log(currNode.x, currNode.y)
-                console.log(end.x, end.y)
+                //console.log(currNode.x, currNode.y)
+                //console.log(end.x, end.y)
 
                 //Claused that node is found
                 if(currNode.x === end.x && currNode.y === end.y){
@@ -71,6 +58,7 @@ class KnightsMove{
 
 
                 currentlevel.push(currNode.points)
+                
                 console.log(currentlevel)
 
                 
@@ -112,14 +100,12 @@ class KnightsMove{
         if (moves[i].x < 0 || moves[i].x > 7 || moves[i].y < 0 || moves[i].y > 7){
             moves.splice(i, 1)
         } else{
-        console.log([moves[i].x, moves[i].y])
+        //console.log([moves[i].x, moves[i].y])
         queue.push(moves[i])
         }
     }
 
 
-        
-    
     }
 
 
@@ -127,4 +113,4 @@ class KnightsMove{
 
 let move1 = new KnightsMove()
 
-console.log(move1.spf([3,3],[7,5]))
+console.log(move1.spf([3,3],[5,7]))
