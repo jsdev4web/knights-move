@@ -14,3 +14,10 @@
     moves.forEach(function(item){
         console.log(item)
     })*/
+
+
+
+    for (let i = 0; moves.length; i++){
+        console.log(moves[i])
+        }
+    

@@ -29,11 +29,7 @@ class KnightsMove{
         
         //base case if board is in the boundaries of 7 by 7 board
         if(start == undefined || end == undefined) {return null}
-        //I need to add in if x or y + next move is greater is 7 === out of bounds
-        //Add in negative numbers
-        if (this.x > 7 || this.y > 7 || this.x < 0 || this.y < 7){
-            return "Out of Bounds"
-         }
+        //I need to add in if x or y + next move is greater is 7 === out of bounds        
 
 
         this.queue = []
@@ -49,47 +45,53 @@ class KnightsMove{
             //make sure here i push the moves loop each go
             for (let i = 0; i < levelSize; i++){
                 let currNode = this.queue.shift()
-                currentlevel.push(currNode.points)
 
-                this.queue.forEach(function(item){
-                    if(JSON.stringify(item.points) === JSON.stringify(end.points)){
-                        return "finished"
+                console.log(currNode.x, currNode.y)
+                console.log(end.x, end.y)
+
+                //Claused that node is found
+                if(currNode.x === end.x && currNode.y === end.y){
+                    return "found"
+                }
+                
+                 //write a if statement to stop DUPLICATE nodes
+                 console.log(JSON.stringify(currNode.points))
+                 for (let x = 0; x < currentlevel.length; x++){
+                    
+                    if(JSON.stringify(currNode.x) === JSON.stringify(currentlevel[x][0]) && JSON.stringify(currNode.y) === JSON.stringify(currentlevel[x][1])){
+                       //duplicate breaks the while loop atm
+                       console.log("duplicate") 
+                       //currNode = null
                     }
-                })
+                 }
 
-                //push all these nodes in the queue
+                 //push all these nodes in the queue
                 //gets the next possible moves
                 this.possibleMoves(currNode.x, currNode.y)
+
+
+                currentlevel.push(currNode.points)
+                console.log(currentlevel)
+
                 
-                console.log(this.queue)
-                if(currNode){
-                    this.queue.push(currNode)
-                }
+                //console.log(this.queue)
+                //if(currNode){
+                 //   this.queue.push(currNode)
+               // }
 
-                console.log(this.queue.length) // 9 length
+                //console.log(this.queue.length) // 9 length
 
-                console.log(currentlevel) //equals 3,3 first level the root
+                //console.log(currentlevel) //equals 3,3 first level the root
                 results.push(currentlevel)
             }
             
-            
+            //return results
         }
-
-
-        //create a array to track moves and make sure no repeat moves
-        //create a QUEUE to track each current move and check if any moves are the ONE
-
-        //recursion would be the legal moves allowed
-
-        //Before or After the recursion i need to track amount moves made
 
         return results
     }
 
-
-    //possible moves is a function
-    //the directions allowed is th left and right that are tracked in queue each while loop
-
+    //all the moves added to current level
     possibleMoves(x, y){
         let queue = this.queue
         let moves =  
@@ -106,10 +108,16 @@ class KnightsMove{
 
 
 
-    moves.forEach(function(item){
-        console.log(item)
-        queue.push(item)
-    })
+    for (let i = 0; i < moves.length; i++){
+        if (moves[i].x < 0 || moves[i].x > 7 || moves[i].y < 0 || moves[i].y > 7){
+            moves.splice(i, 1)
+        } else{
+        console.log([moves[i].x, moves[i].y])
+        queue.push(moves[i])
+        }
+    }
+
+
         
     
     }
@@ -119,4 +127,4 @@ class KnightsMove{
 
 let move1 = new KnightsMove()
 
-console.log(move1.spf([3,3],[5,4]))
+console.log(move1.spf([3,3],[7,5]))
